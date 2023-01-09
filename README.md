@@ -1,15 +1,5 @@
-# 🚀 Welcome to your new awesome project!
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/DmitryNikolaev98/frontend-bootcamp-project-11/workflows/hexlet-check/badge.svg)](https://github.com/DmitryNikolaev98/frontend-bootcamp-project-11/actions)
+[![Node CI](https://github.com/DmitryNikolaev98/frontend-bootcamp-project-11/actions/workflows/node-ci.yml/badge.svg)](https://github.com/DmitryNikolaev98/frontend-bootcamp-project-11/actions/workflows/node-ci.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8ceff91559ad8910684d/maintainability)](https://codeclimate.com/github/DmitryNikolaev98/frontend-bootcamp-project-11/maintainability)
 
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
