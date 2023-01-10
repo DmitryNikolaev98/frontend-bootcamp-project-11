@@ -3,7 +3,7 @@ import './styles.css';
 
 import '@popperjs/core';
 /* eslint-disable-next-line */
-import { Grid, Accordion, Api } from 'bootstrap';
+import bootstrap from 'bootstrap';
 import app from './init.js';
 
 app();
