@@ -13,6 +13,7 @@ export default async () => {
       ru,
     },
   });
+
   const elements = {
     rssForm: document.querySelector('form'),
     rssFormInput: document.querySelector('input'),
@@ -21,6 +22,7 @@ export default async () => {
     feedContainer: document.querySelector('.feeds'),
     fade: document.querySelector('.fade'),
   };
+
   const state = {
     processState: 'filling',
     rssForm: {
@@ -31,6 +33,9 @@ export default async () => {
     rss: {
       feedList: [],
       postList: [],
+    },
+    uiState: {
+      postsPreview: [],
     },
   };
 
