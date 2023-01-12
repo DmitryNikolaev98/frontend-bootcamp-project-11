@@ -5,8 +5,7 @@
   "description": "RSS aggregator",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,7 @@
   },
   "homepage": "https://github.com/DmitryNikolaev98/frontend-bootcamp-project-11#readme",
   "devDependencies": {
+    "@playwright/test": "^1.29.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.31.0",
