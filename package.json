@@ -5,12 +5,8 @@
   "description": "RSS aggregator",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist & NODE_ENV=production npx webpack",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch",
-    "serve": "webpack serve",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,6 @@ import ru from '../locales/ru.js';
 import viewState from './view.js';
 import rssFormHandler from './controller.js';
 import updateRss from './updateRss.js';
-
 export default () => {
   const i18nInstance = i18next.createInstance();
   i18nInstance
@@ -37,7 +36,7 @@ export default () => {
         },
         uiState: {
           selectedPostId: null,
-          postsPreview: [],
+          visitedPostIds: new Set(),
         },
       };
       const wathchedState = viewState(state, elements, i18nInstance);

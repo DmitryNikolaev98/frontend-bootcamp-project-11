@@ -2,7 +2,8 @@ import onChange from 'on-change';
 import { setAttributes } from './auxiliaryFunctions.js';
 
 const renderModal = (selectedPostId, state, elements) => {
-  const data = state.rss.postList.filter((el) => el.id === selectedPostId)[0];
+  const data = state.rss.postList.filter((post) => post.id === selectedPostId)[0];
+
   const a = document.querySelector(`[data-id="${selectedPostId}"]`);
   a.classList.remove('fw-bold');
   a.classList.add('fw-normal', 'link-secondary');
@@ -56,8 +57,7 @@ const renderFeeds = (state, elements, i18nInstance) => {
   feedContainer.append(feedList);
 };
 
-const renderPosts = (state, elements, i18nInstance, ws) => {
-  const wathchedUiState = ws;
+const renderPosts = (state, elements, i18nInstance, wathchedState) => {
   let postList;
   const { postContainer } = elements;
   if (!postContainer.querySelector('.card-body')) {
@@ -77,39 +77,30 @@ const renderPosts = (state, elements, i18nInstance, ws) => {
     postList.textContent = '';
   }
   postContainer.classList.add('list-group', 'border-0', 'rounded-0');
+
   state.rss.postList.forEach((post) => {
-    const postState = state.uiState.postsPreview.filter((el) => el.postId === post.id)[0].state;
-    const aClassList = postState === 'not viewed';
     const li = document.createElement('li');
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
+
     const button = document.createElement('button');
     button.addEventListener('click', () => {
-      wathchedUiState.selectedPostId = post.id;
-      state.uiState.postsPreview.forEach((postPreview) => {
-        const postPrev = postPreview;
-        if (postPrev.postId === post.id) {
-          postPrev.state = 'viewed';
-        }
-      });
+      wathchedState.selectedPostId = post.id;
+      state.uiState.visitedPostIds.add(post.id);
     });
     button.classList.add('btn', 'btn-outline-primary', 'btn-sm');
     button.textContent = i18nInstance.t('posts.buttons');
     const buttonsAttributes = [['type', 'button'], ['data-id', `${post.id}`], ['data-bs-toggle', 'modal'], ['data-bs-target', '#modal']];
     setAttributes(button, buttonsAttributes);
+
     const a = document.createElement('a');
     a.addEventListener('click', () => {
-      wathchedUiState.selectedPostId = post.id;
-      state.uiState.postsPreview.forEach((postPreview) => {
-        const postPrev = postPreview;
-        if (postPrev.postId === post.id) {
-          postPrev.state = 'viewed';
-        }
-      });
+      wathchedState.selectedPostId = post.id;
+      state.uiState.visitedPostIds.add(post.id);
     });
-    if (aClassList === true) {
-      a.classList.add('fw-bold');
-    } else {
+    if (state.uiState.visitedPostIds.has(post.id)) {
       a.classList.add('fw-normal', 'link-secondary');
+    } else {
+      a.classList.add('fw-bold');
     }
     a.textContent = post.title;
     const aAttributes = [['href', `${post.link}`], ['data-id', `${post.id}`], ['target', '_blank'], ['rel', 'noopener noreferer']];
@@ -130,7 +121,6 @@ const renderRssForm = (elements, i18nInstance) => {
   feedback.classList.add('text-success');
   feedback.textContent = i18nInstance.t('rssForm.success');
 };
-
 export default (state, elements, i18nInstance) => {
   const wathchedState = onChange(state, (path, value) => {
     switch (path) {
