@@ -5,7 +5,10 @@ export const allOrigins = 'https://allorigins.hexlet.app/get?disableCache=true&u
 export const getFeed = (doc) => {
   const feed = {
     title: doc.querySelector('channel').children[0].textContent,
-	@@ -18,26 +12,26 @@ export const getFeed = (doc) => {
+    description: doc.querySelector('channel').children[1].textContent,
+    link: doc.querySelector('channel').children[2].textContent,
+  };
+  return feed;
 };
 
 export const getPosts = (doc) => {
