@@ -1,5 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@popperjs/core';
+import './styles.scss';
 import 'bootstrap';
 import app from './init.js';
 

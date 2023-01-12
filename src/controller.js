@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import {
   parse, validate, allOrigins, makePostsPreview,
-} from './auxiliaryFunctions.js';
+} from './auxiliaryFunctions';
 
 export default (state, wathchedState) => (e) => {
   e.preventDefault();
@@ -21,6 +21,7 @@ export default (state, wathchedState) => (e) => {
           wathchedStateHandler.processState = 'loaded';
           wathchedStateHandler.rssForm.urlList.push(state.rssForm.url);
           feed.id = _.uniqueId();
+          feed.url = state.rssForm.url;
           const selectedFeedId = feed.id;
           wathchedStateHandler.rss.feedList.unshift(feed);
           posts.forEach((el) => {
@@ -36,8 +37,6 @@ export default (state, wathchedState) => (e) => {
     })
     .catch((err) => {
       if (!(_.has(err, 'errors'))) {
-        wathchedStateHandler.rssForm.valid = false;
-        wathchedStateHandler.rssForm.valid = null;
         const errors = { err: 'errors.networkErrors.networkError' };
         wathchedStateHandler.rssForm.errors = errors;
       } else {
